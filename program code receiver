@@ -1,0 +1,303 @@
+#include <RF24.h>
+#include<SPI.h>
+RF24 radio(9,10);
+const byte address[][6] = {"00001", "00002"};
+const int op1 = 2;
+const int op2 = 3;
+const int op3 = 4;
+const int op4 = 5;
+const int op5 = 6;
+const int op6 = 7;
+const int op7 = 8;
+const int op8 = A0;
+const int op9 = A1;
+const int op10 = A2;
+const char buzzer[32] = "buzz";
+char buttonstate[32] = "";
+const char button1[32] = "activate_1";
+const char button2[32] = "activate_2";
+const char button3[32] = "activate_3";
+const char button4[32] = "activate_4";
+const char button5[32] = "activate_5";
+const char button6[32] = "activate_6";
+const char button7[32] = "activate_7";
+const char button8[32] = "activate_8";
+const char button9[32] = "activate_9";
+const char button10[32] = "activate_10";
+boolean status1 = false;
+boolean status2 = false;
+boolean status3 = false;
+boolean status4 = false;
+boolean status5 = false;
+boolean status6 = false;
+boolean status7 = false;
+boolean status8 = false;
+boolean status9 = false;
+boolean status10 = false;
+void setup()
+{
+Serial.begin(9600);
+pinMode(op1, OUTPUT);
+pinMode(op2, OUTPUT);
+pinMode(op3, OUTPUT);
+pinMode(op4, OUTPUT);
+pinMode(op5, OUTPUT);
+pinMode(op6, OUTPUT);
+pinMode(op7, OUTPUT);
+pinMode(op8, OUTPUT);
+pinMode(op9, OUTPUT);
+pinMode(op10, OUTPUT);
+radio.begin();
+radio.openReadingPipe(1, address[1]);
+radio.openWritingPipe(address[0]);
+radio.setChannel(100);
+radio.setDataRate(RF24_250KBPS);
+radio.setPALevel(RF24_PA_MAX);
+radio.startListening();
+}
+void loop()
+{
+while(!radio.available());
+radio.read(&buttonstate, sizeof(buttonstate));
+Serial.println(buttonstate);
+if((strcmp(buttonstate,button1) == 0) &&  status1 == false)
+{
+digitalWrite(op1, HIGH);
+status1 = true;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button1) == 0) && status1 == true)
+{
+digitalWrite(op1, LOW);
+status1 = false;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button2) == 0) &&  status2 == false)
+{
+digitalWrite(op2, HIGH);
+status2 = true;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button2) == 0) && status2 == true)
+{
+digitalWrite(op2, LOW);
+status2 = false;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button3) == 0) &&  status3 == false)
+{
+digitalWrite(op3, HIGH);
+status3 = true;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button3) == 0) && status3 == true)
+{
+digitalWrite(op3, LOW);
+status3 = false;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button4) == 0) &&  status4 == false)
+{
+digitalWrite(op4, HIGH);
+status4 = true;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button4) == 0) && status4 == true)
+{
+digitalWrite(op4, LOW);
+status4 = false;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button5) == 0) &&  status5 == false)
+{
+digitalWrite(op5, HIGH);
+status5 = true;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button5) == 0) && status5 == true)
+{
+digitalWrite(op5, LOW);
+status5 = false;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button6) == 0) &&  status6 == false)
+{
+digitalWrite(op6, HIGH);
+status6 = true;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button6) == 0) && status6 == true)
+{
+digitalWrite(op6, LOW);
+status6 = false;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button7) == 0) &&  status7 == false)
+{
+digitalWrite(op7, HIGH);
+status7 = true;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button7) == 0) && status7 == true)
+{
+digitalWrite(op7, LOW);
+status7 = false;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button8) == 0) &&  status8 == false)
+{
+digitalWrite(op8, HIGH);
+status8 = true;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button8) == 0) && status8 == true)
+{
+digitalWrite(op8, LOW);
+status8 = false;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button9) == 0) &&  status9 == false)
+{
+digitalWrite(op9, HIGH);
+status9 = true;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button9) == 0) && status9 == true)
+{
+digitalWrite(op9, LOW);
+status9 = false;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button10) == 0) &&  status10 == false)
+{
+digitalWrite(op10, HIGH);
+status10 = true;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+else if((strcmp(buttonstate,button10) == 0) && status10 == true)
+{
+digitalWrite(op10, LOW);
+status10 = false;
+radio.stopListening();
+for(int i = 0; i < 10; i++)
+{
+radio.write(&buzzer, sizeof(buzzer));
+delay(10);
+}
+radio.startListening();
+}
+}
