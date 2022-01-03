@@ -1,0 +1,201 @@
+include <RF24.h>
+#include<SPI.h>
+RF24 radio(9,10);
+const byte address[][6] = {"00001", "00002"};
+const int ip1 = 2;
+const int ip2 = 3;
+const int ip3 = 4;
+const int ip4 = 5;
+const int ip5 = 6;
+const int ip6 = 7;
+const int ip7 = 8;
+const int ip8 = A0;
+const int ip9 = A1;
+const int ip10 = A2;
+const int buzzer = A3;
+char buzzchar[32] = "";
+const char constbuzzer[32] = "buzz";
+const char button1[32] = "activate_1";
+const char button2[32] = "activate_2";
+const char button3[32] = "activate_3";
+const char button4[32] = "activate_4";
+const char button5[32] = "activate_5";
+const char button6[32] = "activate_6";
+const char button7[32] = "activate_7";
+const char button8[32] = "activate_8";
+const char button9[32] = "activate_9";
+const char button10[32] = "activate_10";
+void setup()
+{
+pinMode(ip1, INPUT);
+pinMode(ip2, INPUT);
+pinMode(ip3, INPUT);
+pinMode(ip4, INPUT);
+pinMode(ip5, INPUT);
+pinMode(ip6, INPUT);
+pinMode(ip7, INPUT);
+pinMode(ip8, INPUT);
+pinMode(ip9, INPUT);
+pinMode(ip10, INPUT);
+pinMode(buzzer, OUTPUT);
+digitalWrite(ip1, HIGH);
+digitalWrite(ip2, HIGH);
+digitalWrite(ip3, HIGH);
+digitalWrite(ip4, HIGH);
+digitalWrite(ip5, HIGH);
+digitalWrite(ip6, HIGH);
+digitalWrite(ip7, HIGH);
+digitalWrite(ip8, HIGH);
+digitalWrite(ip9, HIGH);
+digitalWrite(ip10, HIGH);
+radio.begin();
+radio.openWritingPipe(address[1]);
+radio.openReadingPipe(1, address[0]);
+radio.setChannel(100);
+radio.setDataRate(RF24_250KBPS);
+radio.setPALevel(RF24_PA_MAX);
+radio.stopListening();
+}
+void loop()
+{
+if(digitalRead(ip1) == LOW)
+{
+radio.write(&button1, sizeof(button1));
+radio.startListening();
+while(!radio.available());
+radio.read(&buzzchar, sizeof(buzzchar));
+if(strcmp(buzzchar,constbuzzer) == 0)
+{
+digitalWrite(buzzer, HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+}
+radio.stopListening();
+}
+if(digitalRead(ip2) == LOW)
+{
+radio.write(&button2, sizeof(button2));
+radio.startListening();
+while(!radio.available());
+radio.read(&buzzchar, sizeof(buzzchar));
+if(strcmp(buzzchar,constbuzzer) == 0)
+{
+digitalWrite(buzzer, HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+}
+radio.stopListening();
+}
+if(digitalRead(ip3) == LOW)
+{
+radio.write(&button3, sizeof(button3));
+radio.startListening();
+while(!radio.available());
+radio.read(&buzzchar, sizeof(buzzchar));
+if(strcmp(buzzchar,constbuzzer) == 0)
+{
+digitalWrite(buzzer, HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+}
+radio.stopListening();
+}
+if(digitalRead(ip4) == LOW)
+{
+radio.write(&button4, sizeof(button4));
+radio.startListening();
+while(!radio.available());
+radio.read(&buzzchar, sizeof(buzzchar));
+if(strcmp(buzzchar,constbuzzer) == 0)
+{
+digitalWrite(buzzer, HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+}
+radio.stopListening();
+}
+if(digitalRead(ip5) == LOW)
+{
+radio.write(&button5, sizeof(button5));
+radio.startListening();
+while(!radio.available());
+radio.read(&buzzchar, sizeof(buzzchar));
+if(strcmp(buzzchar,constbuzzer) == 0)
+{
+digitalWrite(buzzer, HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+}
+radio.stopListening();
+}
+if(digitalRead(ip6) == LOW)
+{
+radio.write(&button6, sizeof(button6));
+radio.startListening();
+while(!radio.available());
+radio.read(&buzzchar, sizeof(buzzchar));
+if(strcmp(buzzchar,constbuzzer) == 0)
+{
+digitalWrite(buzzer, HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+}
+radio.stopListening();
+}
+if(digitalRead(ip7) == LOW)
+{
+radio.write(&button7, sizeof(button7));
+radio.startListening();
+while(!radio.available());
+radio.read(&buzzchar, sizeof(buzzchar));
+if(strcmp(buzzchar,constbuzzer) == 0)
+{
+digitalWrite(buzzer, HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+}
+radio.stopListening();
+}
+if(digitalRead(ip8) == LOW)
+{
+radio.write(&button8, sizeof(button8));
+radio.startListening();
+while(!radio.available());
+radio.read(&buzzchar, sizeof(buzzchar));
+if(strcmp(buzzchar,constbuzzer) == 0)
+{
+digitalWrite(buzzer, HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+}
+radio.stopListening();
+}
+if(digitalRead(ip9) == LOW)
+{
+radio.write(&button9, sizeof(button9));
+radio.startListening();
+while(!radio.available());
+radio.read(&buzzchar, sizeof(buzzchar));
+if(strcmp(buzzchar,constbuzzer) == 0)
+{
+digitalWrite(buzzer, HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+}
+radio.stopListening();
+}
+if(digitalRead(ip10) == LOW)
+{
+radio.write(&button10, sizeof(button10));
+radio.startListening();
+while(!radio.available());
+radio.read(&buzzchar, sizeof(buzzchar));
+if(strcmp(buzzchar,constbuzzer) == 0)
+{
+digitalWrite(buzzer, HIGH);
+delay(500);
+digitalWrite(buzzer,LOW);
+}
+radio.stopListening();
+}
+}
